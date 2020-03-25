@@ -18,10 +18,10 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.views import View
 
 USER_DICT = {
-    "k1":"root1",
-    "k2":"root2",
-    "k3":"root3",
-    "k4":"root4"
+    "1":{"name":"root1","email":"123","tel":"123124"},
+    "2":{"name":"root2","email":"123","tel":"123124"},
+    "3":{"name":"root3","email":"123","tel":"123124"},
+    "4":{"name":"root4","email":"123","tel":"123124"},
 }
 
 def index(request):
@@ -64,3 +64,10 @@ class Home(View):
     def post(self,request):
         print(request.method)
         return render(request,"home.html")
+
+
+def detail(request,*args,**kwargs):
+    # return HttpResponse(nid)
+
+    info = USER_DICT[kwargs.get("nid")]
+    return render(request,"detail.html",{"user_info":info})

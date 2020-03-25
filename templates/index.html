@@ -7,7 +7,7 @@
 <body>
     <ul>
         {% for k,v in user_dict.items %}
-            <li>{{k}}-{{v}}</li>
+            <li><a target="_blank"  href="/detail-{{k}}.html">{{v.name}}</a></li>
         {% endfor %}
     </ul>
 </body>
