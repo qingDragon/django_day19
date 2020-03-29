@@ -24,7 +24,7 @@ USER_DICT = {
     "4":{"name":"root4","email":"123","tel":"123124"},
 }
 
-def index(request):
+def index(request,nid):
     return render(request,"index.html",{"user_dict":USER_DICT})
 
 
