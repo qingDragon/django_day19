@@ -25,6 +25,35 @@ def login(request):
     else:
         return redirect("/index/")
 
+def user_info(request):
+    if request.method == 'GET':
+        user_list = models.UserInfo.objects.all()
+        print(user_list.query)#打印sql语法
+        return render(request,"user_info.html",{'user_list':user_list})
+    elif request.method == "POST":
+        u = request.POST.get("user")
+        p = request.POST.get("pwd")
+        models.UserInfo.objects.create(username=u,password=p)
+        return redirect('/cmdb/userinfo/')
+def user_detail(request,nid):
+    obj = models.UserInfo.objects.filter(id=nid).first()
+    return render(request,'user_detail.html',{'obj':obj})
+
+def user_del(request, nid):
+    models.UserInfo.objects.filter(id=nid).delete()
+    return redirect('/cmdb/userinfo/')
+
+def user_edit(request, nid):
+    if request.method == 'GET':
+        obj = models.UserInfo.objects.filter(id=nid).first()
+        return render(request, 'user_edit.html',{'obj': obj})
+    elif request.method == 'POST':
+        nid = request.POST.get('id')
+        u = request.POST.get('username')
+        p = request.POST.get('password')
+        models.UserInfo.objects.filter(id=nid).update(username=u,password=p)
+        return redirect('/cmdb/userinfo/')
+
 def index(request):
     return render(request,"index.html")
 

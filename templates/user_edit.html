@@ -18,11 +18,17 @@
         张朔凌晨三点玩愤怒的小鸟
     </div>
     <div style="position: absolute;top: 48px;bottom: 0;left: 0;width: 200px;background-color: brown;">
-        <a class="menu" href="/cmdb/userinfo/">用户管理</a>
-        <a class="menu" href="/cmdb/usergroup/">用户组管理</a>
+        <a class="menu" href="/cmdb/user_info/">用户管理</a>
+        <a class="menu" href="/cmdb/user_group">用户组管理</a>
     </div>
     <div style="position: absolute;top: 48px;bottom: 0;left: 200px;right: 0;overflow: auto">
-
+        <h1>编辑用户</h1>
+        <form method="POST" action="/cmdb/useredit-{{obj.id}}/">
+            <input style="display: none" type="text" name="id" value="{{obj.id}}"/>
+            <input type="text" name="username" value="{{obj.username}}"/>
+            <input type="text" name="password" value="{{obj.password}}"/>
+            <input type="submit" value="提交" />
+        </form>
     </div>
 
 </body>
